@@ -10,13 +10,19 @@ class SelectPokemonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = Theme.of(context).textTheme;
     return Consumer<PokemonProvider>(
       builder: (context, pokemonProvider, child) {
         PokemonState state = pokemonProvider.state;
         if (state.isLoading) {
           return const Center(child: CircularProgressIndicator());
         }
-        //TODO: Failure
+        if (state.failure != null) {
+          return Text(
+            state.failure!.message,
+            style: textStyle.labelMedium?.copyWith(color: Colors.red),
+          );
+        }
         if (state.pokemons.isEmpty) {
           return Center(child: Text(pokemonListEmpty));
         }

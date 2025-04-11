@@ -22,7 +22,11 @@ class PokemonListView extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               final PokemonEntity pokemon = state.pokemons[index];
-              return PokemonCard(key: ValueKey(pokemon.id), pokemon: pokemon);
+              return PokemonCard(
+                key: ValueKey(pokemon.id),
+                pokemon: pokemon,
+                onTap: () => pokemonProvider.selectPokemon(pokemon),
+              );
             },
           ),
         );

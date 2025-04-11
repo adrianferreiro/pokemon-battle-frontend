@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pokemon_app/config/constants/constants.dart';
+import 'package:pokemon_app/features/battle/presentation/widgets/opponent_pokemon_widget.dart';
+import 'package:pokemon_app/features/battle/presentation/widgets/start_battle_button.dart';
+import 'package:pokemon_app/features/pokemon/presentation/providers/providers.dart';
 import 'package:pokemon_app/features/pokemon/presentation/widget/widgets.dart';
 
 class BattleScreen extends StatelessWidget {
@@ -19,6 +23,8 @@ class _BuildBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
+    final pokemonProvider = Provider.of<PokemonProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -28,6 +34,22 @@ class _BuildBody extends StatelessWidget {
           Text(titleScreen, style: textStyles.titleLarge),
           Text(subtitleScreen, style: textStyles.titleMedium),
           SelectPokemonWidget(),
+          //TODO: BattleResultWidget
+          if (pokemonProvider.state.selectedPokemon != null)
+            Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: PokemonCard(
+                    pokemon: pokemonProvider.state.selectedPokemon!,
+                    showStats: true,
+                  ),
+                ),
+                StartBattleButton(),
+                Expanded(flex: 3, child: OpponentPokemonWidget()),
+              ],
+            ),
+          // Text(pokemonProvider.state.selectedPokemon!.name),
         ],
       ),
     );
