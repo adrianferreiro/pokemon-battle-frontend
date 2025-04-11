@@ -4,7 +4,7 @@ import 'package:pokemon_app/features/pokemon/domain/datasources/pokemon_datasour
 import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/features/pokemon/domain/repositories/pokemon_repository.dart';
 
-class PokemonRepositoryImpl extends PokemonRepository {
+class PokemonRepositoryImpl implements PokemonRepository {
   final PokemonDatasource datasource;
 
   PokemonRepositoryImpl(this.datasource);

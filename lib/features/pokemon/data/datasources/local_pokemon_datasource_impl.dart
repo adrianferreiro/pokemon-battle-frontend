@@ -6,7 +6,7 @@ import 'package:pokemon_app/core/error/errors.dart';
 import 'package:pokemon_app/features/pokemon/domain/entities/entities.dart';
 import 'package:pokemon_app/features/pokemon/domain/datasources/pokemon_datasource.dart';
 
-class LocalPokemonDatasourceImpl extends PokemonDatasource {
+class LocalPokemonDatasourceImpl implements PokemonDatasource {
   @override
   Future<Either<Failure, List<PokemonEntity>>> getPokemonList() async {
     await Future.delayed(const Duration(seconds: 2));

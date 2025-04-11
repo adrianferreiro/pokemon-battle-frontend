@@ -7,7 +7,7 @@ import 'package:pokemon_app/features/battle/data/models/battle_model.dart';
 import 'package:pokemon_app/features/battle/domain/datasources/battle_datasource.dart';
 import 'package:pokemon_app/features/battle/domain/entities/entities.dart';
 
-class LocalBattleDatasourceImpl extends BattleDatasource {
+class LocalBattleDatasourceImpl implements BattleDatasource {
   @override
   Future<Either<Failure, BattleEntity>> startBattle(
     String selectedPokemonId,

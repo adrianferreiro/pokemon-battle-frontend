@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-//TODO:
-
 abstract class Failure extends Equatable {
   final String message;
 
@@ -12,23 +10,21 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({super.message = 'Error en el servidor.'});
+  const ServerFailure({super.message = 'Server error.'});
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure({super.message = 'Error de conexión de red.'});
+  const NetworkFailure({super.message = 'Network connection error.'});
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({super.message = 'Se produjo un error de caché.'});
+  const CacheFailure({super.message = 'A cache error occurred.'});
 }
 
 class PokemonFailure extends Failure {
-  const PokemonFailure({
-    super.message = 'Error al obtener los datos de Pokémon.',
-  });
+  const PokemonFailure({super.message = 'Error retrieving Pokemon data.'});
 }
 
 class BattleFailure extends Failure {
-  const BattleFailure({super.message = 'Error durante el proceso de batalla.'});
+  const BattleFailure({super.message = 'Error during battle process.'});
 }
