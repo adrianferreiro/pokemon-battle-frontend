@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:pokemon_app/features/pokemon/presentation/screens/screens.dart';
+import 'package:pokemon_app/features/battle/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
