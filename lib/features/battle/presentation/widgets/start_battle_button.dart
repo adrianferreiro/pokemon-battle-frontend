@@ -21,7 +21,6 @@ class StartBattleButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           ),
 
           child: const Text('Start Battle', style: TextStyle(fontSize: 16)),
