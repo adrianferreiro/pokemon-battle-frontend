@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pokemon_app/features/battle/presentation/providers/providers.dart';
 import 'package:pokemon_app/features/pokemon/presentation/providers/providers.dart';
+import 'package:pokemon_app/features/battle/presentation/providers/battle_state.dart';
 
 class StartBattleButton extends StatelessWidget {
   const StartBattleButton({super.key});
@@ -13,17 +14,29 @@ class StartBattleButton extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            final selectedPokemonId = pokemonProvider.state.selectedPokemon!.id;
-            battleProvider.startBattle(selectedPokemonId: selectedPokemonId);
-          },
+        child: TextButton(
+          onPressed:
+              (battleProvider.state.status == BattleStatus.fighting ||
+                      battleProvider.state.status == BattleStatus.loading)
+                  ? null
+                  : () {
+                    final selectedPokemonId =
+                        pokemonProvider.state.selectedPokemon!.id;
+                    battleProvider.startBattle(
+                      selectedPokemonId: selectedPokemonId,
+                    );
+                  },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
           ),
 
-          child: const Text('Start Battle', style: TextStyle(fontSize: 16)),
+          child: Text(
+            battleProvider.state.status == BattleStatus.fighting
+                ? 'Fighting'
+                : 'Start Battle',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
       ),
     );
