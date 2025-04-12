@@ -102,6 +102,7 @@ class PokemonCard extends StatelessWidget {
           Column(
             spacing: 5,
             children: [
+              //TODO: substract health points
               StatBarWidget(label: "HP", value: pokemon!.hp),
               StatBarWidget(label: "Attack", value: pokemon!.attack),
               StatBarWidget(label: "Defense", value: pokemon!.defense),
