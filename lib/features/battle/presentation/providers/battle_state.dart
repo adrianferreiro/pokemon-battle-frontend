@@ -33,4 +33,14 @@ class BattleState {
   static BattleState initial() {
     return BattleState(battle: null, status: BattleStatus.initial);
   }
+
+  Turn? get currentTurn {
+    if (battle == null || battle!.turns.isEmpty) return null;
+    if (currentTurnIndex >= battle!.turns.length) return null;
+    return battle!.turns[currentTurnIndex];
+  }
+
+  bool isAttacker(String pokemonName) {
+    return currentTurn?.attacker == pokemonName;
+  }
 }
