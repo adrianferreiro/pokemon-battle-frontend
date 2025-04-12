@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/features/battle/presentation/widgets/battle_message_box.dart';
 import 'package:provider/provider.dart';
 import 'package:pokemon_app/config/constants/constants.dart';
 import 'package:pokemon_app/features/battle/presentation/widgets/opponent_pokemon_widget.dart';
@@ -34,7 +35,7 @@ class _BuildBody extends StatelessWidget {
           Text(titleScreen, style: textStyles.titleLarge),
           Text(subtitleScreen, style: textStyles.titleMedium),
           SelectPokemonWidget(),
-          //TODO: BattleResultWidget
+          pokemonProvider.state.isLoading ? SizedBox() : BattleMessageBox(),
           if (pokemonProvider.state.selectedPokemon != null)
             Row(
               children: [

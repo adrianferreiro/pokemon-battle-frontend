@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart';
-import 'package:pokemon_app/features/pokemon/presentation/providers/pokemon_provider.dart';
-import 'package:pokemon_app/features/pokemon/presentation/providers/pokemon_state.dart';
-import 'package:pokemon_app/features/pokemon/presentation/widget/pokemon_card.dart';
 import 'package:provider/provider.dart';
+import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart';
+import 'package:pokemon_app/features/pokemon/presentation/providers/providers.dart';
+import 'package:pokemon_app/features/pokemon/presentation/providers/pokemon_state.dart';
+import 'package:pokemon_app/features/pokemon/presentation/widget/widgets.dart';
 
 class PokemonListView extends StatelessWidget {
   const PokemonListView({super.key});

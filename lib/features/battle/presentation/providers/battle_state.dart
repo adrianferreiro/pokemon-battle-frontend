@@ -7,18 +7,26 @@ class BattleState {
   final BattleEntity? battle;
   final Failure? failure;
   final BattleStatus status;
+  final int currentTurnIndex;
 
-  BattleState({required this.battle, required this.status, this.failure});
+  BattleState({
+    required this.battle,
+    required this.status,
+    this.failure,
+    this.currentTurnIndex = 0,
+  });
 
   BattleState copyWith({
     BattleEntity? battle,
     Failure? failure,
     BattleStatus? status,
+    int? currentTurnIndex,
   }) {
     return BattleState(
       battle: battle ?? this.battle,
       failure: failure ?? this.failure,
       status: status ?? this.status,
+      currentTurnIndex: currentTurnIndex ?? this.currentTurnIndex,
     );
   }
 
