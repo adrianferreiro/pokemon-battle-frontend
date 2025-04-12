@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:pokemon_app/config/constants/constants.dart';
-import 'package:pokemon_app/features/battle/presentation/widgets/opponent_pokemon_widget.dart';
-import 'package:pokemon_app/features/battle/presentation/widgets/start_battle_button.dart';
+import 'package:pokemon_app/features/battle/presentation/providers/providers.dart';
+import 'package:pokemon_app/features/battle/presentation/providers/battle_state.dart';
+import 'package:pokemon_app/features/battle/presentation/widgets/widgets.dart';
 import 'package:pokemon_app/features/pokemon/presentation/providers/providers.dart';
 import 'package:pokemon_app/features/pokemon/presentation/widget/widgets.dart';
 
@@ -23,6 +25,7 @@ class _BuildBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
+    final battleProvider = Provider.of<BattleProvider>(context);
     final pokemonProvider = Provider.of<PokemonProvider>(context);
 
     return Padding(
@@ -34,20 +37,32 @@ class _BuildBody extends StatelessWidget {
           Text(titleScreen, style: textStyles.titleLarge),
           Text(subtitleScreen, style: textStyles.titleMedium),
           SelectPokemonWidget(),
-          //TODO: BattleResultWidget
+          pokemonProvider.state.isLoading ? SizedBox() : BattleMessageBox(),
           if (pokemonProvider.state.selectedPokemon != null)
-            Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: PokemonCard(
-                    pokemon: pokemonProvider.state.selectedPokemon!,
-                    showStats: true,
-                  ),
-                ),
-                StartBattleButton(),
-                Expanded(flex: 3, child: OpponentPokemonWidget()),
-              ],
+            Builder(
+              builder: (_) {
+                final selectedPokemon = pokemonProvider.state.selectedPokemon!;
+                final pokemonName = selectedPokemon.name;
+                return Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: PokemonCard(
+                        pokemon: selectedPokemon,
+                        cardState:
+                            battleProvider.state.status == BattleStatus.fighting
+                                ? (battleProvider.state.isAttacker(pokemonName)
+                                    ? PokemonCardState.selected
+                                    : PokemonCardState.attacked)
+                                : PokemonCardState.normal,
+                        showStats: true,
+                      ),
+                    ),
+                    StartBattleButton(),
+                    Expanded(flex: 3, child: OpponentPokemonWidget()),
+                  ],
+                );
+              },
             ),
           // Text(pokemonProvider.state.selectedPokemon!.name),
         ],

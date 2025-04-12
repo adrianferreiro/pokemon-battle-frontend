@@ -9,8 +9,8 @@ class PokemonCard extends StatelessWidget {
   final bool showStats;
   final double? width;
   final double? height;
-  final bool isSelected;
   final String placeholderText;
+  final PokemonCardState cardState;
 
   const PokemonCard({
     super.key,
@@ -19,32 +19,39 @@ class PokemonCard extends StatelessWidget {
     this.showStats = false,
     this.width,
     this.height,
-    this.isSelected = false,
     this.placeholderText = 'Opponent will appear here',
+    this.cardState = PokemonCardState.normal,
   });
 
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
+
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        elevation: isSelected ? 8 : 4,
+        elevation: cardState == PokemonCardState.selected ? 8 : 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
           side:
-              isSelected
+              cardState == PokemonCardState.selected
                   ? BorderSide(color: Theme.of(context).primaryColor, width: 2)
                   : BorderSide.none,
         ),
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
           width: width,
           height: height,
           padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: getPokemonCardBackgroundColor(context, cardState),
+            borderRadius: BorderRadius.circular(12),
+          ),
           child:
               pokemon == null
                   ? _buildPlaceholder(context)
-                  : _buildPokemonContent(context, textStyles),
+                  : _buildPokemonContent(textStyles),
         ),
       ),
     );
@@ -65,7 +72,7 @@ class PokemonCard extends StatelessWidget {
     );
   }
 
-  Widget _buildPokemonContent(BuildContext context, TextTheme textStyles) {
+  Widget _buildPokemonContent(TextTheme textStyles) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,8 +98,7 @@ class PokemonCard extends StatelessWidget {
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
         ),
-
-        if (showStats) ...[
+        if (showStats)
           Column(
             spacing: 5,
             children: [
@@ -102,7 +108,6 @@ class PokemonCard extends StatelessWidget {
               StatBarWidget(label: "Speed", value: pokemon!.speed),
             ],
           ),
-        ],
       ],
     );
   }

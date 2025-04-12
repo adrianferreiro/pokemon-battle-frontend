@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pokemon_app/features/battle/data/mappers/battle_mappers.dart';
 import 'package:pokemon_app/features/battle/presentation/providers/battle_state.dart';
 import 'package:pokemon_app/features/battle/presentation/providers/providers.dart';
 import 'package:pokemon_app/features/pokemon/presentation/widget/widgets.dart';
-import 'package:provider/provider.dart';
 
 class OpponentPokemonWidget extends StatelessWidget {
   const OpponentPokemonWidget({super.key});
@@ -34,11 +34,24 @@ class OpponentPokemonWidget extends StatelessWidget {
           );
         }
         return battleProvider.state.battle != null
-            ? PokemonCard(
-              pokemon: BattleMappers.battlePokemonToPokemonEntity(
-                battleProvider.state.battle!.opponentPokemon,
-              ),
-              showStats: true,
+            ? Builder(
+              builder: (_) {
+                final opponentPokemon =
+                    battleProvider.state.battle!.opponentPokemon;
+                final opponentName = opponentPokemon.name;
+                return PokemonCard(
+                  pokemon: BattleMappers.battlePokemonToPokemonEntity(
+                    opponentPokemon,
+                  ),
+                  cardState:
+                      battleProvider.state.status == BattleStatus.fighting
+                          ? (battleProvider.state.isAttacker(opponentName)
+                              ? PokemonCardState.selected
+                              : PokemonCardState.attacked)
+                          : PokemonCardState.normal,
+                  showStats: true,
+                );
+              },
             )
             : PokemonCard();
       },
