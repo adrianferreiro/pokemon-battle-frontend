@@ -26,7 +26,7 @@ void main() {
           create:
               (_) => BattleProvider(
                 battleRepository: BattleRepositoryImpl(
-                  LocalBattleDatasourceImpl(),
+                  RemoteBattleDatasourceImpl(dio: dio),
                 ),
               ),
         ),
