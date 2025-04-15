@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_app/features/pokemon/presentation/providers/providers.dart';
 import 'package:provider/provider.dart';
 import 'package:pokemon_app/features/battle/presentation/providers/battle_state.dart';
 import 'package:pokemon_app/features/battle/presentation/providers/providers.dart';
@@ -9,11 +10,13 @@ class BattleMessageBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final battleState = Provider.of<BattleProvider>(context).state;
-
+    final pokemonState = Provider.of<PokemonProvider>(context).state;
     String message = '';
     switch (battleState.status) {
       case BattleStatus.initial:
-        message = 'Battlefield ready.';
+        pokemonState.failure == null
+            ? message = 'Battlefield ready.'
+            : message = 'An error ocurred.';
         break;
       case BattleStatus.loading:
         message = 'Getting opponent.';
