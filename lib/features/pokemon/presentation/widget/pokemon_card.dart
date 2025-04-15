@@ -30,29 +30,36 @@ class PokemonCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        elevation: cardState == PokemonCardState.selected ? 8 : 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side:
-              cardState == PokemonCardState.selected
-                  ? BorderSide(color: Theme.of(context).primaryColor, width: 2)
-                  : BorderSide.none,
-        ),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          width: width,
-          height: height,
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: getPokemonCardBackgroundColor(context, cardState),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: Card(
+          elevation: cardState == PokemonCardState.selected ? 8 : 4,
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
+            side:
+                cardState == PokemonCardState.selected
+                    ? BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 2,
+                    )
+                    : BorderSide.none,
           ),
-          child:
-              pokemon == null
-                  ? _buildPlaceholder(context)
-                  : _buildPokemonContent(textStyles),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            width: width,
+            height: height,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: getPokemonCardBackgroundColor(context, cardState),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child:
+                pokemon == null
+                    ? _buildPlaceholder(context)
+                    : _buildPokemonContent(textStyles, width ?? 40),
+          ),
         ),
       ),
     );
@@ -73,30 +80,32 @@ class PokemonCard extends StatelessWidget {
     );
   }
 
-  Widget _buildPokemonContent(TextTheme textStyles) {
+  Widget _buildPokemonContent(TextTheme textStyles, double size) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Flexible(
-          child: CachedNetworkImage(
-            imageUrl: pokemon!.imageUrl,
-            placeholder:
-                (context, url) => const Center(
-                  child: SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: CircularProgressIndicator(strokeWidth: 2),
+          child: Center(
+            child: CachedNetworkImage(
+              imageUrl: pokemon!.imageUrl,
+              placeholder:
+                  (context, url) => Center(
+                    child: SizedBox(
+                      height: size / 4,
+                      width: size / 4,
+                      child: const CircularProgressIndicator(strokeWidth: 2),
+                    ),
                   ),
-                ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            fit: BoxFit.contain,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              fit: BoxFit.contain,
+            ),
           ),
         ),
         Text(
           pokemon!.name,
-          style: textStyles.bodySmall,
+          style: textStyles.bodySmall?.copyWith(fontWeight: FontWeight.bold),
           textAlign: TextAlign.left,
           overflow: TextOverflow.ellipsis,
         ),
@@ -104,7 +113,7 @@ class PokemonCard extends StatelessWidget {
           Column(
             spacing: 5,
             children: [
-              //TODO: substract health points
+              //
               const Divider(),
               StatBarWidget(label: "HP", value: pokemon!.hp),
               StatBarWidget(label: "Attack", value: pokemon!.attack),

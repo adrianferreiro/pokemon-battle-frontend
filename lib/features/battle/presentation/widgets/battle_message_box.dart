@@ -43,10 +43,10 @@ class BattleMessageBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.lightBlue.shade50,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.black.withAlpha(20)),
+        border: Border.all(color: Colors.black, width: 2),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(20),
+            color: Colors.black.withAlpha(100),
             blurRadius: 8,
             offset: const Offset(2, 2),
           ),
