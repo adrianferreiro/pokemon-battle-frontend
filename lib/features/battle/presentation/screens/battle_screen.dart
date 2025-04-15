@@ -50,7 +50,7 @@ class _BuildBody extends StatelessWidget {
                   return Row(
                     children: [
                       Expanded(
-                        flex: 3,
+                        flex: 4,
                         child: SizedBox(
                           height: pokemonCardHeight,
                           child: PokemonCard(
@@ -68,9 +68,9 @@ class _BuildBody extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const StartBattleButton(),
+                      const Expanded(flex: 2, child: StartBattleButton()),
                       const Expanded(
-                        flex: 3,
+                        flex: 4,
                         child: SizedBox(
                           height: pokemonCardHeight,
                           child: OpponentPokemonWidget(),

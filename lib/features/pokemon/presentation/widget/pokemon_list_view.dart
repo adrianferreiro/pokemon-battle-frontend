@@ -12,11 +12,15 @@ class PokemonListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final isLandscape = size.width > size.height;
     final battleProvider = Provider.of<BattleProvider>(context, listen: false);
     final pokemonProvider = Provider.of<PokemonProvider>(context);
     PokemonState state = pokemonProvider.state;
+    final containerHeight =
+        isLandscape ? size.height * 0.50 : size.height * 0.15;
+    final cardSize = isLandscape ? size.width * 0.25 : size.width * 0.25;
     return SizedBox(
-      height: size.height * 0.15,
+      height: containerHeight,
       width: size.width,
       child: ListView.builder(
         itemCount: state.pokemons.length,
@@ -30,6 +34,8 @@ class PokemonListView extends StatelessWidget {
               battleProvider.resetBattle();
               pokemonProvider.selectPokemon(pokemon);
             },
+            width: cardSize,
+            height: cardSize,
           );
         },
       ),
