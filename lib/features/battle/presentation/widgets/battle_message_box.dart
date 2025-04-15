@@ -38,12 +38,24 @@ class BattleMessageBox extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.blue.shade50,
+        color: Colors.lightBlue.shade50,
         borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.black.withAlpha(20)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(20),
+            blurRadius: 8,
+            offset: const Offset(2, 2),
+          ),
+        ],
       ),
-      child: Text(message),
+      child: Text(
+        message,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

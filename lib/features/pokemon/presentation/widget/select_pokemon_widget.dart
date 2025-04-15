@@ -24,9 +24,9 @@ class SelectPokemonWidget extends StatelessWidget {
           );
         }
         if (state.pokemons.isEmpty) {
-          return Center(child: Text(pokemonListEmpty));
+          return const Center(child: Text(pokemonListEmpty));
         }
-        return PokemonListView();
+        return const PokemonListView();
       },
     );
   }

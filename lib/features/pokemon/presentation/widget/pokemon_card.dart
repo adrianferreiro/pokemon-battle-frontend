@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:pokemon_app/config/constants/pokemon.dart';
 import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/features/pokemon/presentation/widget/widgets.dart';
 
@@ -19,7 +20,7 @@ class PokemonCard extends StatelessWidget {
     this.showStats = false,
     this.width,
     this.height,
-    this.placeholderText = 'Opponent will appear here',
+    this.placeholderText = cardPlaceholderText,
     this.cardState = PokemonCardState.normal,
   });
 
@@ -74,8 +75,9 @@ class PokemonCard extends StatelessWidget {
 
   Widget _buildPokemonContent(TextTheme textStyles) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Flexible(
           child: CachedNetworkImage(
@@ -94,8 +96,8 @@ class PokemonCard extends StatelessWidget {
         ),
         Text(
           pokemon!.name,
-          style: textStyles.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
+          style: textStyles.bodySmall,
+          textAlign: TextAlign.left,
           overflow: TextOverflow.ellipsis,
         ),
         if (showStats)
@@ -103,6 +105,7 @@ class PokemonCard extends StatelessWidget {
             spacing: 5,
             children: [
               //TODO: substract health points
+              const Divider(),
               StatBarWidget(label: "HP", value: pokemon!.hp),
               StatBarWidget(label: "Attack", value: pokemon!.attack),
               StatBarWidget(label: "Defense", value: pokemon!.defense),

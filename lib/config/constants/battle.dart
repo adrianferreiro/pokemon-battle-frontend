@@ -1,2 +1,2 @@
-final String titleScreen = 'Battle of Pokemon.';
-final String subtitleScreen = 'Select your pokemon.';
+const String titleScreen = 'Battle of Pokemon.';
+const String subtitleScreen = 'Select your pokemon.';

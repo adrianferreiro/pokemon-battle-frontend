@@ -5,6 +5,9 @@ import 'package:pokemon_app/core/dependency_injection/dependency_injection.dart'
 
 void main() {
   runApp(
-    MultiProvider(providers: DependencyInjection().providers, child: MyApp()),
+    MultiProvider(
+      providers: DependencyInjection().providers,
+      child: const MyApp(),
+    ),
   );
 }

@@ -26,9 +26,9 @@ class LocalPokemonDatasourceImpl implements PokemonDatasource {
 
       return Right(pokemons);
     } on ServerException {
-      return Left(ServerFailure());
+      return Left(const ServerFailure());
     } on SocketException {
-      return Left(NetworkFailure());
+      return Left(const NetworkFailure());
     } catch (e) {
       return Left(PokemonFailure(message: e.toString()));
     }

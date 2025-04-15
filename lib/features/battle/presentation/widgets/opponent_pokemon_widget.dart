@@ -23,10 +23,10 @@ class OpponentPokemonWidget extends StatelessWidget {
               child: Column(
                 spacing: 15,
                 children: [
-                  Icon(Icons.cancel, color: Colors.red),
+                  const Icon(Icons.cancel, color: Colors.red),
                   Text(
                     battleProvider.state.failure!.message,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ],
               ),
@@ -53,7 +53,7 @@ class OpponentPokemonWidget extends StatelessWidget {
                 );
               },
             )
-            : PokemonCard();
+            : const PokemonCard();
       },
     );
   }
