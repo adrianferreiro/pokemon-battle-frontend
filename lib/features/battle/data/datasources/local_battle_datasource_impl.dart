@@ -23,7 +23,7 @@ class LocalBattleDatasourceImpl implements BattleDatasource {
       final BattleModel battleModel = BattleModel.fromJson(response);
       return Right(battleModel.toEntity());
     } catch (e) {
-      return Left(BattleFailure());
+      return Left(const BattleFailure());
     }
   }
 }

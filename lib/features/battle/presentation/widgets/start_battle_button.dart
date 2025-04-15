@@ -14,7 +14,7 @@ class StartBattleButton extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: Center(
-        child: TextButton(
+        child: ElevatedButton(
           onPressed:
               (battleProvider.state.status == BattleStatus.fighting ||
                       battleProvider.state.status == BattleStatus.loading)
@@ -27,15 +27,19 @@ class StartBattleButton extends StatelessWidget {
                     );
                   },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.green[800],
             foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+            elevation: 4,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           ),
-
           child: Text(
             battleProvider.state.status == BattleStatus.fighting
                 ? 'Fighting'
                 : 'Start Battle',
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
       ),

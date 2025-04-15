@@ -15,7 +15,7 @@ class BattleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body: _BuildBody()));
+    return const SafeArea(child: Scaffold(body: _BuildBody()));
   }
 }
 
@@ -37,8 +37,10 @@ class _BuildBody extends StatelessWidget {
           children: [
             Text(titleScreen, style: textStyles.titleLarge),
             Text(subtitleScreen, style: textStyles.titleMedium),
-            SelectPokemonWidget(),
-            pokemonProvider.state.isLoading ? SizedBox() : BattleMessageBox(),
+            const SelectPokemonWidget(),
+            pokemonProvider.state.isLoading
+                ? const SizedBox()
+                : const BattleMessageBox(),
             if (pokemonProvider.state.selectedPokemon != null)
               Builder(
                 builder: (_) {
@@ -49,22 +51,31 @@ class _BuildBody extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 3,
-                        child: PokemonCard(
-                          pokemon: selectedPokemon,
-                          cardState:
-                              battleProvider.state.status ==
-                                      BattleStatus.fighting
-                                  ? (battleProvider.state.isAttacker(
-                                        pokemonName,
-                                      )
-                                      ? PokemonCardState.selected
-                                      : PokemonCardState.attacked)
-                                  : PokemonCardState.normal,
-                          showStats: true,
+                        child: SizedBox(
+                          height: pokemonCardHeight,
+                          child: PokemonCard(
+                            pokemon: selectedPokemon,
+                            cardState:
+                                battleProvider.state.status ==
+                                        BattleStatus.fighting
+                                    ? (battleProvider.state.isAttacker(
+                                          pokemonName,
+                                        )
+                                        ? PokemonCardState.selected
+                                        : PokemonCardState.attacked)
+                                    : PokemonCardState.normal,
+                            showStats: true,
+                          ),
                         ),
                       ),
-                      StartBattleButton(),
-                      Expanded(flex: 3, child: OpponentPokemonWidget()),
+                      const StartBattleButton(),
+                      const Expanded(
+                        flex: 3,
+                        child: SizedBox(
+                          height: pokemonCardHeight,
+                          child: OpponentPokemonWidget(),
+                        ),
+                      ),
                     ],
                   );
                 },

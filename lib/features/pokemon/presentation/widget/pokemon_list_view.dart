@@ -16,7 +16,7 @@ class PokemonListView extends StatelessWidget {
     final pokemonProvider = Provider.of<PokemonProvider>(context);
     PokemonState state = pokemonProvider.state;
     return SizedBox(
-      height: size.height * 0.25,
+      height: size.height * 0.15,
       width: size.width,
       child: ListView.builder(
         itemCount: state.pokemons.length,

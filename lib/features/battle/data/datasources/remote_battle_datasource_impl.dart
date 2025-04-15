@@ -23,10 +23,10 @@ class RemoteBattleDatasourceImpl implements BattleDatasource {
         final battleModel = BattleModel.fromJson(response.data);
         return Right(battleModel.toEntity());
       } else {
-        return Left(ServerFailure());
+        return Left(const ServerFailure());
       }
     } catch (e) {
-      return Left(BattleFailure());
+      return Left(const BattleFailure());
     }
   }
 }

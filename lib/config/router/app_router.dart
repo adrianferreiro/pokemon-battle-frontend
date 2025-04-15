@@ -8,9 +8,9 @@ final appRouter = GoRouter(
       path: BattleScreen.path,
       name: BattleScreen.name,
       builder: (context, state) {
-        return BattleScreen();
+        return const BattleScreen();
       },
-      routes: [],
+      routes: const [],
     ),
   ],
 );

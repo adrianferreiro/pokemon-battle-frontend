@@ -37,7 +37,7 @@ class BattleProvider extends ChangeNotifier {
     } catch (e) {
       _state = _state.copyWith(
         status: BattleStatus.error,
-        failure: BattleFailure(),
+        failure: const BattleFailure(),
       );
       notifyListeners();
     }
