@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:pokemon_app/core/error/errors.dart';
-import 'package:pokemon_app/features/pokemon/data/model/pokemon_model.dart';
+import 'package:pokemon_app/features/pokemon/data/models/pokemon_model.dart';
 import 'package:pokemon_app/features/pokemon/domain/entities/entities.dart';
 import 'package:pokemon_app/features/pokemon/domain/datasources/pokemon_datasource.dart';
 

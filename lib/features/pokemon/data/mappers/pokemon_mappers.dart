@@ -1,5 +1,5 @@
 import 'package:pokemon_app/features/pokemon/domain/entities/entities.dart';
-import 'package:pokemon_app/features/pokemon/data/model/pokemon_model.dart';
+import 'package:pokemon_app/features/pokemon/data/models/pokemon_model.dart';
 
 class PokemonMappers {
   static List<PokemonEntity> fromResponseToEntities(dynamic responseData) {
