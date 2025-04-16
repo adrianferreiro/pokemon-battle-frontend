@@ -61,6 +61,24 @@ class BattleProvider extends ChangeNotifier {
     });
   }
 
+  int getPokemonCurrentHp(String pokemonName) {
+    if (_state.battle == null) return 0;
+    int initialHp =
+        _state.battle!.playerPokemon.name == pokemonName
+            ? _state.battle!.playerPokemon.hpInitial
+            : _state.battle!.opponentPokemon.hpInitial;
+
+    int totalDamage = 0;
+    for (int i = 0; i <= _state.currentTurnIndex; i++) {
+      final turn = _state.battle!.turns[i];
+      if (turn.defender == pokemonName) {
+        totalDamage += turn.damage;
+      }
+    }
+
+    return (initialHp - totalDamage).clamp(0, initialHp);
+  }
+
   void resetBattle() {
     _turnTimer?.cancel();
     _turnTimer = null;

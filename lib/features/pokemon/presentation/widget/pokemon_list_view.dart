@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_app/features/battle/presentation/providers/battle_provider.dart';
+import 'package:pokemon_app/features/battle/presentation/providers/battle_state.dart';
 import 'package:provider/provider.dart';
 import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/features/pokemon/presentation/providers/providers.dart';
@@ -31,8 +32,10 @@ class PokemonListView extends StatelessWidget {
             key: ValueKey(pokemon.id),
             pokemon: pokemon,
             onTap: () {
-              battleProvider.resetBattle();
-              pokemonProvider.selectPokemon(pokemon);
+              if (battleProvider.state.status != BattleStatus.fighting) {
+                battleProvider.resetBattle();
+                pokemonProvider.selectPokemon(pokemon);
+              }
             },
             width: cardSize,
             height: cardSize,
