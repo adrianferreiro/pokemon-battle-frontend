@@ -1,4 +1,4 @@
-import 'package:pokemon_app/features/battle/domain/entities/battle_entity.dart';
+import 'package:pokemon_app/features/battle/domain/entities/entities.dart';
 
 class WinnerModel {
   final String id;
