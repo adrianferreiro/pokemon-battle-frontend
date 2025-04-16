@@ -65,3 +65,11 @@ Ejecutar proyecto
 ```
 flutter run
 ```
+
+# Testing
+
+Se realizan test unitarios en PokemonModel y BattleModel. Para correrlos ejecutar el comando:
+
+```
+flutter test
+```

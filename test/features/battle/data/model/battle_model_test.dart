@@ -160,7 +160,6 @@ void main() {
     test('fromJson should return valid BattleModel', () {
       final result = BattleModel.fromJson(battleJson);
       expect(result, isA<BattleModel>());
-      expect(BattleModel.fromJson(battleJson), equals(battleModel));
       expect(result.playerPokemon, isA<BattlePokemonDataModel>());
       expect(result.opponentPokemon, isA<BattlePokemonDataModel>());
       expect(result.turns, isA<List<TurnModel>>());

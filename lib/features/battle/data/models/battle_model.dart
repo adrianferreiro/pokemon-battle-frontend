@@ -1,8 +1,7 @@
-import 'package:equatable/equatable.dart';
 import 'package:pokemon_app/features/battle/data/models/models.dart';
 import 'package:pokemon_app/features/battle/domain/entities/battle_entity.dart';
 
-class BattleModel extends Equatable {
+class BattleModel {
   final BattlePokemonDataModel playerPokemon;
   final BattlePokemonDataModel opponentPokemon;
   final List<TurnModel> turns;
@@ -46,13 +45,4 @@ class BattleModel extends Equatable {
       totalTurns: totalTurns,
     );
   }
-
-  @override
-  List<Object?> get props => [
-    playerPokemon,
-    opponentPokemon,
-    turns,
-    winner,
-    totalTurns,
-  ];
 }
