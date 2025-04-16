@@ -1,6 +1,7 @@
 # Flutter Pokemon Battle
 
 Proyecto desarrollado como prueba técnica. Aplicación móvil que permite seleccionar tu Pokémon y enfrentarte a un oponente aleatorio en una batalla dinámica, con una interfaz intuitiva, amigable y fácil de usar.
+Hecho como frontend para [pokemon-battle-backend](https://github.com/adrianferreiro/pokemon-battle-backend).
 
 ---
 
@@ -63,4 +64,12 @@ Ejecutar proyecto
 
 ```
 flutter run
+```
+
+# Testing
+
+Se realizan test unitarios en PokemonModel y BattleModel. Para correrlos ejecutar el comando:
+
+```
+flutter test
 ```

@@ -34,7 +34,7 @@ class BattleState {
     return BattleState(battle: null, status: BattleStatus.initial);
   }
 
-  Turn? get currentTurn {
+  TurnEntity? get currentTurn {
     if (battle == null || battle!.turns.isEmpty) return null;
     if (currentTurnIndex >= battle!.turns.length) return null;
     return battle!.turns[currentTurnIndex];
