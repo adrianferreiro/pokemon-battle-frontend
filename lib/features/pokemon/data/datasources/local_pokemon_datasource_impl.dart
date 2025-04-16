@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:pokemon_app/core/error/errors.dart';
+import 'package:pokemon_app/features/pokemon/data/model/pokemon_model.dart';
 import 'package:pokemon_app/features/pokemon/domain/entities/entities.dart';
 import 'package:pokemon_app/features/pokemon/domain/datasources/pokemon_datasource.dart';
 
-class LocalPokemonDatasourceImpl extends PokemonDatasource {
+class LocalPokemonDatasourceImpl implements PokemonDatasource {
   @override
   Future<Either<Failure, List<PokemonEntity>>> getPokemonList() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -20,15 +21,15 @@ class LocalPokemonDatasourceImpl extends PokemonDatasource {
       final List<PokemonEntity> pokemons =
           jsonList
               .map(
-                (json) => PokemonEntity.fromJson(json as Map<String, dynamic>),
+                (json) => PokemonModel.fromJson(json as Map<String, dynamic>),
               )
               .toList();
 
       return Right(pokemons);
     } on ServerException {
-      return Left(ServerFailure());
+      return Left(const ServerFailure());
     } on SocketException {
-      return Left(NetworkFailure());
+      return Left(const NetworkFailure());
     } catch (e) {
       return Left(PokemonFailure(message: e.toString()));
     }
