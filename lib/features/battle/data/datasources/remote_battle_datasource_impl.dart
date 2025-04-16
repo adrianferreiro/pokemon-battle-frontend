@@ -2,7 +2,7 @@ import 'package:pokemon_app/core/error/either.dart';
 import 'package:pokemon_app/core/error/failures.dart';
 import 'package:pokemon_app/core/network/api_paths.dart';
 import 'package:pokemon_app/core/network/client/api_client.dart';
-import 'package:pokemon_app/features/battle/data/models/battle_model.dart';
+import 'package:pokemon_app/features/battle/data/models/models.dart';
 import 'package:pokemon_app/features/battle/domain/datasources/battle_datasource.dart';
 import 'package:pokemon_app/features/battle/domain/entities/battle_entity.dart';
 

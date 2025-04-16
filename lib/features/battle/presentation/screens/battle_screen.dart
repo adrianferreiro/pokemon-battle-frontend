@@ -68,7 +68,11 @@ class _BuildBody extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Expanded(flex: 2, child: StartBattleButton()),
+                      (battleProvider.state.status == BattleStatus.fighting ||
+                              battleProvider.state.status ==
+                                  BattleStatus.loading)
+                          ? const SizedBox()
+                          : const Expanded(flex: 2, child: StartBattleButton()),
                       const Expanded(
                         flex: 4,
                         child: SizedBox(

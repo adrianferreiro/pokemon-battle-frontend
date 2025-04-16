@@ -1,4 +1,5 @@
 import 'package:pokemon_app/features/pokemon/domain/entities/entities.dart';
+import 'package:pokemon_app/features/pokemon/data/model/pokemon_model.dart';
 
 class PokemonMappers {
   static List<PokemonEntity> fromResponseToEntities(dynamic responseData) {
@@ -12,7 +13,7 @@ class PokemonMappers {
     }
 
     return pokemonList
-        .map<PokemonEntity>((json) => PokemonEntity.fromJson(json))
+        .map<PokemonEntity>((json) => PokemonModel.fromJson(json))
         .toList();
   }
 }
