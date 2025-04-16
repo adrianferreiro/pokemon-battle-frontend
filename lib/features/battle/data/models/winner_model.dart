@@ -15,7 +15,7 @@ class WinnerModel {
     );
   }
 
-  Winner toEntity() {
-    return Winner(id: id, name: name, imageUrl: imageUrl);
+  WinnerEntity toEntity() {
+    return WinnerEntity(id: id, name: name, imageUrl: imageUrl);
   }
 }

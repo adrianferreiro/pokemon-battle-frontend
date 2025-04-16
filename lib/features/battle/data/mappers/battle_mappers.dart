@@ -3,7 +3,7 @@ import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart
 
 class BattleMappers {
   static PokemonEntity battlePokemonToPokemonEntity(
-    BattlePokemonData battlePokemon,
+    BattlePokemonDataEntity battlePokemon,
   ) {
     return PokemonEntity(
       id: battlePokemon.id,

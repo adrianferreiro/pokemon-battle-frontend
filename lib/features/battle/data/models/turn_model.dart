@@ -25,8 +25,8 @@ class TurnModel {
     );
   }
 
-  Turn toEntity() {
-    return Turn(
+  TurnEntity toEntity() {
+    return TurnEntity(
       turn: turn,
       attacker: attacker,
       defender: defender,

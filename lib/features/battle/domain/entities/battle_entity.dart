@@ -1,10 +1,10 @@
 import 'package:pokemon_app/features/battle/domain/entities/entities.dart';
 
 class BattleEntity {
-  final BattlePokemonData playerPokemon;
-  final BattlePokemonData opponentPokemon;
-  final List<Turn> turns;
-  final Winner winner;
+  final BattlePokemonDataEntity playerPokemon;
+  final BattlePokemonDataEntity opponentPokemon;
+  final List<TurnEntity> turns;
+  final WinnerEntity winner;
   final int totalTurns;
 
   BattleEntity({
@@ -14,12 +14,4 @@ class BattleEntity {
     required this.winner,
     required this.totalTurns,
   });
-}
-
-class Winner {
-  final String id;
-  final String name;
-  final String imageUrl;
-
-  Winner({required this.id, required this.name, required this.imageUrl});
 }

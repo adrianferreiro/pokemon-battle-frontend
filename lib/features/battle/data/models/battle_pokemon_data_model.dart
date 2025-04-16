@@ -40,8 +40,8 @@ class BattlePokemonDataModel {
     );
   }
 
-  BattlePokemonData toEntity() {
-    return BattlePokemonData(
+  BattlePokemonDataEntity toEntity() {
+    return BattlePokemonDataEntity(
       id: id,
       name: name,
       attack: attack,

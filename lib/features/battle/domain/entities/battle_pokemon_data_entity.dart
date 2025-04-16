@@ -1,4 +1,4 @@
-class BattlePokemonData {
+class BattlePokemonDataEntity {
   final String id;
   final String name;
   final int attack;
@@ -10,7 +10,7 @@ class BattlePokemonData {
   final String imageUrl;
   final int totalDamageDealt;
 
-  BattlePokemonData({
+  BattlePokemonDataEntity({
     required this.id,
     required this.name,
     required this.attack,
