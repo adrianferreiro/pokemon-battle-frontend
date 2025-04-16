@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:pokemon_app/config/constants/pokemon.dart';
+import 'package:pokemon_app/features/battle/presentation/providers/battle_provider.dart';
+import 'package:pokemon_app/features/battle/presentation/providers/battle_state.dart';
 import 'package:pokemon_app/features/pokemon/domain/entities/pokemon_entity.dart';
 import 'package:pokemon_app/features/pokemon/presentation/widget/widgets.dart';
 
@@ -110,16 +113,31 @@ class PokemonCard extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         if (showStats)
-          Column(
-            spacing: 5,
-            children: [
-              //
-              const Divider(),
-              StatBarWidget(label: "HP", value: pokemon!.hp),
-              StatBarWidget(label: "Attack", value: pokemon!.attack),
-              StatBarWidget(label: "Defense", value: pokemon!.defense),
-              StatBarWidget(label: "Speed", value: pokemon!.speed),
-            ],
+          Consumer<BattleProvider>(
+            builder: (context, battleProvider, child) {
+              BattleStatus status = battleProvider.state.status;
+              bool highlightHpBarRed =
+                  status == BattleStatus.fighting ||
+                  status == BattleStatus.finished;
+              int currentHp = pokemon!.hp;
+              if (battleProvider.state.battle != null) {
+                currentHp = battleProvider.getPokemonCurrentHp(pokemon!.name);
+              }
+              return Column(
+                spacing: 5,
+                children: [
+                  const Divider(),
+                  StatBarWidget(
+                    label: "HP",
+                    value: currentHp,
+                    backgroundColor: highlightHpBarRed ? Colors.red : null,
+                  ),
+                  StatBarWidget(label: "Attack", value: pokemon!.attack),
+                  StatBarWidget(label: "Defense", value: pokemon!.defense),
+                  StatBarWidget(label: "Speed", value: pokemon!.speed),
+                ],
+              );
+            },
           ),
       ],
     );

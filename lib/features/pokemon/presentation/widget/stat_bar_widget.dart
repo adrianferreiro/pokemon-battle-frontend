@@ -4,7 +4,13 @@ import 'package:pokemon_app/config/constants/constants.dart';
 class StatBarWidget extends StatelessWidget {
   final String label;
   final int value;
-  const StatBarWidget({super.key, required this.label, required this.value});
+  final Color? backgroundColor;
+  const StatBarWidget({
+    super.key,
+    required this.label,
+    required this.value,
+    this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,7 @@ class StatBarWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
               value: percentage,
-              backgroundColor: Colors.grey[300],
+              backgroundColor: backgroundColor ?? Colors.grey[300],
               color: Colors.lightGreenAccent[400],
               minHeight: 8,
             ),

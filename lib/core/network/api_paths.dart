@@ -1,5 +1,6 @@
 class ApiPaths {
-  static const _baseUrl = 'http://localhost:3000/';
+  static const _baseUrl =
+      'https://pokemon-battle-backend-production.up.railway.app/';
 
   static const _getPokemonList = 'pokemon';
   static const _startBattle = 'battle';
