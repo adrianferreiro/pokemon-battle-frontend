@@ -76,7 +76,7 @@ void main() {
       },
       "totalTurns": 5,
     };
-    BattlePokemonDataModel playerPokemon = BattlePokemonDataModel(
+    BattlePokemonDataModel playerPokemon = const BattlePokemonDataModel(
       id: 'pokemon-1',
       name: 'Pikachu',
       attack: 4,
@@ -104,35 +104,35 @@ void main() {
       totalDamageDealt: 2,
     );
 
-    TurnModel turn001 = TurnModel(
+    TurnModel turn001 = const TurnModel(
       turn: 1,
-      attacker: "attacker",
-      defender: "defender",
+      attacker: "Pikachu",
+      defender: "Charmander",
       damage: 1,
       defenderRemainingHp: 2,
     );
-    TurnModel turn002 = TurnModel(
+    TurnModel turn002 = const TurnModel(
       turn: 2,
       attacker: "Charmander",
       defender: "Pikachu",
       damage: 1,
       defenderRemainingHp: 2,
     );
-    TurnModel turn003 = TurnModel(
+    TurnModel turn003 = const TurnModel(
       turn: 3,
       defender: "Charmander",
       attacker: "Pikachu",
       damage: 1,
       defenderRemainingHp: 1,
     );
-    TurnModel turn004 = TurnModel(
+    TurnModel turn004 = const TurnModel(
       turn: 4,
       attacker: "Charmander",
       defender: "Pikachu",
       damage: 1,
       defenderRemainingHp: 1,
     );
-    TurnModel turn005 = TurnModel(
+    TurnModel turn005 = const TurnModel(
       turn: 5,
       attacker: "Pikachu",
       defender: "Charmander",
@@ -142,7 +142,7 @@ void main() {
 
     List<TurnModel> turns = [turn001, turn002, turn003, turn004, turn005];
 
-    WinnerModel winner = WinnerModel(
+    WinnerModel winner = const WinnerModel(
       id: 'pokemon-1',
       name: 'Pikachu',
       imageUrl:
@@ -160,6 +160,7 @@ void main() {
     test('fromJson should return valid BattleModel', () {
       final result = BattleModel.fromJson(battleJson);
       expect(result, isA<BattleModel>());
+      expect(BattleModel.fromJson(battleJson), equals(battleModel));
       expect(result.playerPokemon, isA<BattlePokemonDataModel>());
       expect(result.opponentPokemon, isA<BattlePokemonDataModel>());
       expect(result.turns, isA<List<TurnModel>>());
@@ -172,6 +173,9 @@ void main() {
     test('toEntity should return valid BattleEntity', () {
       final result = battleModel.toEntity();
       expect(result, isA<BattleEntity>());
+      expect(result.playerPokemon.name, equals('Pikachu'));
+      expect(result.turns.length, equals(5));
+      expect(result.totalTurns, equals(5));
     });
   });
 }

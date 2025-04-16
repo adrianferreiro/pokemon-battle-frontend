@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:pokemon_app/features/battle/domain/entities/entities.dart';
 
-class BattlePokemonDataModel {
+class BattlePokemonDataModel extends Equatable {
   final String id;
   final String name;
   final int attack;
@@ -12,7 +13,7 @@ class BattlePokemonDataModel {
   final String imageUrl;
   final int totalDamageDealt;
 
-  BattlePokemonDataModel({
+  const BattlePokemonDataModel({
     required this.id,
     required this.name,
     required this.attack,
@@ -54,4 +55,18 @@ class BattlePokemonDataModel {
       totalDamageDealt: totalDamageDealt,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    name,
+    attack,
+    defense,
+    hpInitial,
+    hpFinal,
+    speed,
+    type,
+    imageUrl,
+    totalDamageDealt,
+  ];
 }

@@ -1,13 +1,14 @@
+import 'package:equatable/equatable.dart';
 import 'package:pokemon_app/features/battle/domain/entities/entities.dart';
 
-class TurnModel {
+class TurnModel extends Equatable {
   final int turn;
   final String attacker;
   final String defender;
   final int damage;
   final int defenderRemainingHp;
 
-  TurnModel({
+  const TurnModel({
     required this.turn,
     required this.attacker,
     required this.defender,
@@ -34,4 +35,13 @@ class TurnModel {
       defenderRemainingHp: defenderRemainingHp,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    turn,
+    attacker,
+    defender,
+    damage,
+    defenderRemainingHp,
+  ];
 }

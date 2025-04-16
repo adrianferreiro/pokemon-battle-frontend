@@ -1,4 +1,5 @@
 class ApiPaths {
+  //TODO: change hardcoded baseUrl to use .env
   static const _baseUrl =
       'https://pokemon-battle-backend-production.up.railway.app/';
 
